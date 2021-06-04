@@ -4,7 +4,11 @@ import ContentLoader, {Rect, Circle, Path} from 'react-content-loader/native';
 
 const {width, height} = Dimensions.get('window');
 
-function CTLoader(props) {
+interface CTLoader {
+
+}
+
+function CTLoader(props : CTLoader) {
   return (
     <ContentLoader
       speed={2}

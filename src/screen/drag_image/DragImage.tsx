@@ -54,6 +54,7 @@ export default function DragImage({}: DragImageProps) {
   const translateXY: Animated.SharedValue<number> = useSharedValue(0);
   const startingPosition: number = 0;
   const opacity: Animated.SharedValue<number> = useSharedValue(0);
+  const x: Animated.SharedValue<number> = useSharedValue(startingPosition);
   const y: Animated.SharedValue<number> = useSharedValue(startingPosition);
   const insets: EdgeInsets = useSafeAreaInsets();
   const offsetY: number = (height - HEIGHT_IMAGE) / 2 - 90 - insets.top;
@@ -130,26 +131,27 @@ export default function DragImage({}: DragImageProps) {
   );
 
   const panGestureHandler = useAnimatedGestureHandler({
-    onStart: (event, ctx) => {},
+    onStart: (event, ctx) => {
+      x.value = startingPosition;
+      y.value = startingPosition;
+    },
     onActive: (event, ctx) => {
-      // x.value = startingPosition + event.translationX;
+      x.value = startingPosition + event.translationX;
       y.value = startingPosition + event.translationY;
       opacity.value = withTiming(0, {duration: 200});
     },
     onEnd: (event, ctx) => {
-      // x.value = withSpring(startingPosition, {
-      //   damping: 10,
-      //   stiffness: 80,
-      // });
       if (y.value < -150 || y.value > 150) {
         translateXY.value = withTiming(0, {}, () => callback(false));
         opacity.value = withTiming(0);
         y.value = withTiming(startingPosition);
+        x.value = withTiming(startingPosition);
       } else {
         opacity.value = withTiming(1, {
           duration: 500,
           easing: Easing.in(Easing.linear),
         });
+        x.value = withTiming(startingPosition, {duration: 300});
         y.value = withTiming(startingPosition, {duration: 300});
       }
     },
@@ -158,9 +160,9 @@ export default function DragImage({}: DragImageProps) {
   const animatedStyle = useAnimatedStyle(() => {
     return {
       transform: [
-        // {
-        //   translateX: x.value,
-        // },
+        {
+          translateX: x.value,
+        },
         {
           translateY: y.value,
         },

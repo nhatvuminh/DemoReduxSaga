@@ -1,10 +1,10 @@
-import {API_FOOTBALLERS} from '../../api';
+import { API_FOOTBALLERS } from '../../api';
 
 export function getFootballersAPI() {
   return fetch(API_FOOTBALLERS)
     .then(response => response.json())
-    .then(response => ({response}))
-    .catch(error => ({error}));
+    .then(response => ({ response }))
+    .catch(error => ({ error }));
 }
 
 export function fetchProfileData() {
@@ -14,13 +14,21 @@ export function fetchProfileData() {
   };
 }
 
+export type Footballer = {
+  id: number;
+  avatar: string;
+  name: string;
+  cardLevel: number;
+  OVR: string;
+};
+
 // Suspense integrations like Relay implement
 // a contract like this to integrate with React.
 // Real implementations can be significantly more complex.
 // Don't copy-paste this into your project!
-function wrapPromise(promise) {
+function wrapPromise(promise: Promise<Footballer>) {
   let status = 'pending';
-  let result;
+  let result: Footballer;
   let suspender = promise.then(
     r => {
       status = 'success';
@@ -44,7 +52,7 @@ function wrapPromise(promise) {
   };
 }
 
-function fetchUser() {
+function fetchUser(): Promise<Footballer> {
   return new Promise((resolve, reject) => {
     fetch(API_FOOTBALLERS)
       .then(response => response.json())

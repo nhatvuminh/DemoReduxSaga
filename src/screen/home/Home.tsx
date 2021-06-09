@@ -1,6 +1,6 @@
 import React, {useEffect, useCallback, useMemo, useState} from 'react';
 import {SafeAreaView, TouchableOpacity, View, Text} from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch, useSelector, DefaultRootState} from 'react-redux';
 import Constants from '../../constants/Constants';
 import ContentLoader from '../../loader/ContentLoader';
 import {StackNavigationProp} from '@react-navigation/stack';
@@ -16,7 +16,7 @@ type HomeProps = {
 // const resource = fetchProfileData();
 
 export default function Home({navigation}: HomeProps) {
-  const data = useSelector((state : any) => state.footballers);
+  const data = useSelector((state: any) => state.footballers);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -46,22 +46,26 @@ export default function Home({navigation}: HomeProps) {
 
   const navigationHandler = useCallback(
     (targetScreen: keyof RootStackParamList) => {
-        navigation.navigate(targetScreen);
+      navigation.navigate(targetScreen);
     },
-    [navigation]
-);
+    [navigation],
+  );
 
   const onMoveToAnimatedScroll = () => {
-    navigationHandler("AnimatedScroll");
+    navigationHandler('AnimatedScroll');
   };
 
   const onMoveToDragImage = () => {
-    navigation.navigate("DragImage");
+    navigation.navigate('ListPost');
   };
 
   const onMoveToAnimatedScrollView = () => {
-    navigation.navigate("AnimatedScrollView");
+    navigation.navigate('AnimatedScrollView');
   };
+
+  const onMoveToActiveUserScroll = () => {
+    navigation.navigate('ActiveUserScroll');
+  }
 
   return (
     <SafeAreaView
@@ -103,6 +107,19 @@ export default function Home({navigation}: HomeProps) {
             backgroundColor: '#007bff',
           }}>
           <Text style={{color: 'white'}}>AnimatedScrollView</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={{flexWrap: 'wrap', marginTop: 20}}>
+        <TouchableOpacity
+          onPress={onMoveToActiveUserScroll}
+          style={{
+            borderWidth: 1,
+            borderColor: 'white',
+            borderRadius: 10,
+            padding: 10,
+            backgroundColor: '#007bff',
+          }}>
+          <Text style={{color: 'white'}}>ActiveUserScroll</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>

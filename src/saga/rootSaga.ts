@@ -20,7 +20,7 @@ function* fetchFootballersSaga() {
   yield takeLatest('FOOTBALLERS_FETCH_REQUESTED', fetchFootballers);
 }
 
-function* rootSaga() {
+function* rootSaga(): Generator {
   return yield all([fetchFootballersSaga()]);
 }
 

@@ -1,6 +1,7 @@
 export default {
   HOME: 'Home',
   ANIMATED_SCROLL: 'AnimatedScroll',
-  DRAG_IMAGE: 'DragImage',
+  LIST_POST: 'ListPost',
   ANIMATED_SCROLL_VIEW: 'AnimatedScrollView',
+  SCROLL_ACTIVE_USER: 'ActiveUserScroll',
 };

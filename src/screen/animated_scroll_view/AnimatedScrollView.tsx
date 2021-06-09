@@ -1,4 +1,4 @@
-import {StackNavigationProp} from '@react-navigation/stack';
+import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
 import {
   Dimensions,
@@ -15,7 +15,7 @@ import Animated, {
   interpolate,
   useAnimatedScrollHandler,
 } from 'react-native-reanimated';
-import {RootStackParamList} from '../../../App';
+import { RootStackParamList } from '../../../App';
 
 type AnimatedScrollViewNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -37,23 +37,24 @@ export default function AnimatedScrollView({
     },
   });
 
-  const styles = useAnimatedStyle(() => {
-    return {
-      opacity: interpolate(scrollY.value, [0, 199, 199.5, 200], [1, 1, 0, 0]),
-    };
-  });
+  // const styles = useAnimatedStyle(() => {
+  //   return {
+  //     opacity: interpolate(scrollY.value, [0, 199, 199.5, 200], [1, 1, 0, 0]),
+  //   };
+  // });
 
-  const topViewStyles = useAnimatedStyle(() => {
-    return {
-      opacity: interpolate(scrollY.value, [0, 199, 199.5, 200], [0, 0, 1, 1]),
-    };
-  });
+  // const topViewStyles = useAnimatedStyle(() => {
+  //   return {
+  //     opacity: interpolate(scrollY.value, [0, 199, 199.5, 200], [0, 0, 1, 1]),
+  //   };
+  // });
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={{ flex: 1 }}>
       <Animated.ScrollView
+        stickyHeaderIndices={[0]}
         scrollEventThrottle={1}
-        style={{flexGrow: 1}}
+        style={{ flexGrow: 1 }}
         onScroll={scrollHandler}>
         <Animated.View
           style={[
@@ -65,25 +66,35 @@ export default function AnimatedScrollView({
               flexDirection: 'row',
               backgroundColor: '#007bff',
             },
-            styles,
+            // styles,
           ]}>
-          {Array(3)
-            .fill(3)
-            .map((item, index) => {
-              return (
-                <View
-                  key={index}
-                  style={{
-                    flex: 1 / 3,
-                    padding: 10,
-                    borderColor: 'black',
-                    borderRightWidth: index < 2 ? 1 : 0,
-                    flexWrap: 'wrap',
-                  }}>
-                  <Text style={{fontSize: 14, color: 'white'}}>{index}</Text>
-                </View>
-              );
-            })}
+          <View
+            style={[
+              {
+                flexDirection: 'row',
+              },
+              // styles,
+            ]}>
+            {Array(3)
+              .fill(3)
+              .map((item, index) => {
+                return (
+                  <View
+                    key={index}
+                    style={{
+                      flex: 1 / 3,
+                      padding: 10,
+                      borderColor: 'black',
+                      borderRightWidth: index < 2 ? 1 : 0,
+                      flexWrap: 'wrap',
+                    }}>
+                    <Text style={{ fontSize: 14, color: 'white' }}>
+                      {index}
+                    </Text>
+                  </View>
+                );
+              })}
+          </View>
         </Animated.View>
         <Text>AADSDUAOIDAIOSUDJUDIOSDIOASJDIOAJSDI</Text>
         <Text>AADSDUAOIDAIOSUDJUDIOSDIOASJDIOAJSDI</Text>
@@ -150,7 +161,7 @@ export default function AnimatedScrollView({
         <Text>AADSDUAOIDAIOSUDJUDIOSDIOASJDIOAJSDI</Text>
         <Text>AADSDUAOIDAIOSUDJUDIOSDIOASJDIOAJSDI</Text>
       </Animated.ScrollView>
-      <Animated.View
+      {/* <Animated.View
         style={[
           {
             position: 'absolute',
@@ -178,11 +189,11 @@ export default function AnimatedScrollView({
                   borderRightWidth: index < 2 ? 1 : 0,
                   flexWrap: 'wrap',
                 }}>
-                <Text style={{fontSize: 14, color: 'white'}}>{index}</Text>
+                <Text style={{ fontSize: 14, color: 'white' }}>{index}</Text>
               </View>
             );
           })}
-      </Animated.View>
+      </Animated.View> */}
     </SafeAreaView>
   );
 }

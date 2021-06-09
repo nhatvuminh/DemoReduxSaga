@@ -5,6 +5,6 @@ const reducers = combineReducers({
   footballers: footballers,
 });
 
-const rootReducer = (state, action) => reducers(state, action);
+const rootReducer = (state: any, action: any) => reducers(state, action);
 
 export default rootReducer;

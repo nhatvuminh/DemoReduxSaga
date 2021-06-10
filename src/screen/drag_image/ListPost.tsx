@@ -48,9 +48,9 @@ const avatar =
 const {width, height} = Dimensions.get('window');
 const HEIGHT_IMAGE = width - 100;
 
-interface DragImageProps {}
+interface ListPostProps {}
 
-export default function DragImage({}: DragImageProps) {
+export default function ListPost({}: ListPostProps) {
   const translateXY: Animated.SharedValue<number> = useSharedValue(0);
   const startingPosition: number = 0;
   const opacity: Animated.SharedValue<number> = useSharedValue(0);

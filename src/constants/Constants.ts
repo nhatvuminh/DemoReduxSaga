@@ -4,4 +4,5 @@ export default {
   LIST_POST: 'ListPost',
   ANIMATED_SCROLL_VIEW: 'AnimatedScrollView',
   SCROLL_ACTIVE_USER: 'ActiveUserScroll',
+  UBER_EAT: 'UberEat',
 };

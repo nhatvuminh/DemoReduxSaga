@@ -1,10 +1,10 @@
-import React, {useEffect, useCallback, useMemo, useState} from 'react';
-import {SafeAreaView, TouchableOpacity, View, Text} from 'react-native';
-import {useDispatch, useSelector, DefaultRootState} from 'react-redux';
+import React, { useEffect, useCallback, useMemo, useState } from 'react';
+import { SafeAreaView, TouchableOpacity, View, Text } from 'react-native';
+import { useDispatch, useSelector, DefaultRootState } from 'react-redux';
 import Constants from '../../constants/Constants';
 import ContentLoader from '../../loader/ContentLoader';
-import {StackNavigationProp} from '@react-navigation/stack';
-import {RootStackParamList} from '../../../App';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamList } from '../../../App';
 import Footballers from '../../Item/Footballers';
 
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
@@ -15,18 +15,18 @@ type HomeProps = {
 
 // const resource = fetchProfileData();
 
-export default function Home({navigation}: HomeProps) {
+export default function Home({ navigation }: HomeProps) {
   const data = useSelector((state: any) => state.footballers);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch({type: 'FOOTBALLERS_FETCH_REQUESTED'});
+    dispatch({ type: 'FOOTBALLERS_FETCH_REQUESTED' });
   }, []);
 
   const Data = () => {
     if (data.message == null) {
       return (
-        <View style={{flex: 1}}>
+        <View style={{ flex: 1 }}>
           <ContentLoader />
           <ContentLoader />
           <ContentLoader />
@@ -34,7 +34,7 @@ export default function Home({navigation}: HomeProps) {
       );
     } else if (data.message != 'success') {
       return (
-        <View style={{flex: 1}}>
+        <View style={{ flex: 1 }}>
           <Text>{'Error...'}</Text>
         </View>
       );
@@ -65,12 +65,16 @@ export default function Home({navigation}: HomeProps) {
 
   const onMoveToActiveUserScroll = () => {
     navigation.navigate('ActiveUserScroll');
-  }
+  };
+
+  const onMoveToUberEat = () => {
+    navigation.navigate('UberEat');
+  };
 
   return (
     <SafeAreaView
-      style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <View style={{flexWrap: 'wrap'}}>
+      style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <View style={{ flexWrap: 'wrap' }}>
         <TouchableOpacity
           onPress={onMoveToAnimatedScroll}
           style={{
@@ -80,10 +84,10 @@ export default function Home({navigation}: HomeProps) {
             padding: 10,
             backgroundColor: '#007bff',
           }}>
-          <Text style={{color: 'white'}}>Animated Scroll</Text>
+          <Text style={{ color: 'white' }}>Animated Scroll</Text>
         </TouchableOpacity>
       </View>
-      <View style={{flexWrap: 'wrap', marginTop: 20}}>
+      <View style={{ flexWrap: 'wrap', marginTop: 20 }}>
         <TouchableOpacity
           onPress={onMoveToDragImage}
           style={{
@@ -93,10 +97,10 @@ export default function Home({navigation}: HomeProps) {
             padding: 10,
             backgroundColor: '#007bff',
           }}>
-          <Text style={{color: 'white'}}>Drag Image</Text>
+          <Text style={{ color: 'white' }}>Drag Image</Text>
         </TouchableOpacity>
       </View>
-      <View style={{flexWrap: 'wrap', marginTop: 20}}>
+      <View style={{ flexWrap: 'wrap', marginTop: 20 }}>
         <TouchableOpacity
           onPress={onMoveToAnimatedScrollView}
           style={{
@@ -106,10 +110,10 @@ export default function Home({navigation}: HomeProps) {
             padding: 10,
             backgroundColor: '#007bff',
           }}>
-          <Text style={{color: 'white'}}>AnimatedScrollView</Text>
+          <Text style={{ color: 'white' }}>AnimatedScrollView</Text>
         </TouchableOpacity>
       </View>
-      <View style={{flexWrap: 'wrap', marginTop: 20}}>
+      <View style={{ flexWrap: 'wrap', marginTop: 20 }}>
         <TouchableOpacity
           onPress={onMoveToActiveUserScroll}
           style={{
@@ -119,7 +123,20 @@ export default function Home({navigation}: HomeProps) {
             padding: 10,
             backgroundColor: '#007bff',
           }}>
-          <Text style={{color: 'white'}}>ActiveUserScroll</Text>
+          <Text style={{ color: 'white' }}>ActiveUserScroll</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={{ flexWrap: 'wrap', marginTop: 20 }}>
+        <TouchableOpacity
+          onPress={onMoveToUberEat}
+          style={{
+            borderWidth: 1,
+            borderColor: 'white',
+            borderRadius: 10,
+            padding: 10,
+            backgroundColor: '#007bff',
+          }}>
+          <Text style={{ color: 'white' }}>Uber Eat</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>

@@ -26,17 +26,17 @@ export default ({ y }: TabProps) => {
 
   const indexTab = useDerivedValue(() => {
     foods.forEach((__, i) => {
-      // if (i === foods.length - 1) {
-      //   if (y.value >= measurements[i]) {
-      //     index.value = withTiming(i);
-      //   }
-      // } else {
+      if (i === foods.length - 1) {
+        if (y.value >= measurements[i]) {
+          index.value = withTiming(i);
+        }
+      } else {
         if (y.value >= measurements[i] && y.value <= measurements[i + 1]) {
           index.value = withTiming(i);
         } else if (y.value <= measurements[0]) {
           index.value = withTiming(0);
         }
-      // }
+      }
     });
 
     return index.value;

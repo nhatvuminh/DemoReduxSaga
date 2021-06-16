@@ -84,7 +84,12 @@ export default ({ y }: HeaderProps) => {
           flexDirection: 'row',
           justifyContent: 'space-between',
         }}>
-        <View style={{ flexWrap: 'wrap', flexDirection: 'row' }}>
+        <View
+          style={{
+            flexWrap: 'wrap',
+            flexDirection: 'row',
+            alignItems: 'center',
+          }}>
           <TouchableOpacity onPress={goBack}>
             <FeatherIcon
               name={'arrow-left'}

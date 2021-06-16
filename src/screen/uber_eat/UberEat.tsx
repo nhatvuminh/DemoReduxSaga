@@ -1,26 +1,25 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
+import { Platform } from 'react-native';
 import {
-  StatusBar,
-  View,
-  Text,
   Dimensions,
-  StyleSheet,
   LayoutChangeEvent,
+  StatusBar,
   StatusBarStyle,
+  StyleSheet,
+  Text,
+  View,
 } from 'react-native';
 import Animated, {
-  Extrapolate,
   interpolate,
   runOnJS,
   useAnimatedScrollHandler,
   useAnimatedStyle,
   useSharedValue,
 } from 'react-native-reanimated';
-import Header from './Header';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import HeaderImage from './HeaderImage';
 import { UberEatContext } from './context';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import Header from './Header';
+import HeaderImage from './HeaderImage';
 
 export type Food = {
   id: number;
@@ -38,7 +37,7 @@ type UberEatProps = {
   foods: KindOfFood[];
 };
 
-const { width } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 export const IMAGE_HEADER_HEIGHT = width / (480 / 320);
 export const ICON_BACK_SIZE = 30;
 
@@ -161,15 +160,34 @@ export default ({
   );
 
   const [barStyle, setBarStyle] = useState<StatusBarStyle>('light-content');
+  const [contentHeight, setContentHeight] = useState<number>(0);
+
+  const setStatusBarStyle = useCallback(
+    (bStyle: StatusBarStyle) => {
+      if (bStyle != barStyle) {
+        setBarStyle(bStyle);
+      }
+    },
+    [barStyle],
+  );
+
+  useEffect(() => {
+    if (contentHeight && measurements.length > 0) {
+      if (measurements[foods.length - 1] > contentHeight - height) {
+        measurements[foods.length - 1] = contentHeight - height;
+        setMeasurements([...measurements]);
+      }
+    }
+  }, [contentHeight, measurements[foods.length - 1]]);
 
   const scrollY = useSharedValue(0);
   const onScrollHandler = useAnimatedScrollHandler({
     onScroll: e => {
       scrollY.value = e.contentOffset.y;
       if (scrollY.value >= IMAGE_HEADER_HEIGHT + 70) {
-        runOnJS(setBarStyle)('dark-content');
+        runOnJS(setStatusBarStyle)('dark-content');
       } else {
-        runOnJS(setBarStyle)('light-content');
+        runOnJS(setStatusBarStyle)('light-content');
       }
     },
   });
@@ -183,14 +201,19 @@ export default ({
     setMeasurements([...measurements]);
   };
 
+  const onContentSizeChange = useCallback((w: number, h: number) => {
+    setContentHeight(h);
+  }, []);
+
   return (
     <UberEatContext.Provider value={{ foods: foods, measurements }}>
       <View style={{ flex: 1, backgroundColor: 'white' }}>
-        <StatusBar barStyle={barStyle} />
+        {Platform.OS === 'ios' && <StatusBar barStyle={barStyle} />}
         <HeaderImage y={scrollY} />
         <Animated.ScrollView
           scrollEventThrottle={1}
           onScroll={onScrollHandler}
+          onContentSizeChange={onContentSizeChange}
           style={{ ...StyleSheet.absoluteFillObject }}>
           <View
             style={{

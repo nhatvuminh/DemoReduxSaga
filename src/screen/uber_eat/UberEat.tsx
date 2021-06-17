@@ -1,4 +1,10 @@
-import React, { useCallback, useState, useEffect } from 'react';
+import React, {
+  useCallback,
+  useState,
+  useEffect,
+  RefObject,
+  useRef,
+} from 'react';
 import { Platform } from 'react-native';
 import {
   Dimensions,
@@ -9,6 +15,7 @@ import {
   Text,
   View,
 } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import Animated, {
   interpolate,
   runOnJS,
@@ -159,6 +166,8 @@ export default ({
     new Array(foods.length).fill(0),
   );
 
+  const scrollViewRef = useRef<Animated.ScrollView>(null);
+
   const [barStyle, setBarStyle] = useState<StatusBarStyle>('light-content');
   const [contentHeight, setContentHeight] = useState<number>(0);
 
@@ -173,8 +182,11 @@ export default ({
 
   useEffect(() => {
     if (contentHeight && measurements.length > 0) {
-      if (measurements[foods.length - 1] > contentHeight - height) {
-        measurements[foods.length - 1] = contentHeight - height;
+      if (
+        Math.floor(measurements[foods.length - 1]) >=
+        Math.floor(contentHeight - height)
+      ) {
+        measurements[foods.length - 1] = Math.floor(contentHeight - height) - 1;
         setMeasurements([...measurements]);
       }
     }
@@ -206,11 +218,13 @@ export default ({
   }, []);
 
   return (
-    <UberEatContext.Provider value={{ foods: foods, measurements }}>
+    <UberEatContext.Provider
+      value={{ foods: foods, measurements, scrollViewRef }}>
       <View style={{ flex: 1, backgroundColor: 'white' }}>
         {Platform.OS === 'ios' && <StatusBar barStyle={barStyle} />}
         <HeaderImage y={scrollY} />
         <Animated.ScrollView
+          ref={scrollViewRef}
           scrollEventThrottle={1}
           onScroll={onScrollHandler}
           onContentSizeChange={onContentSizeChange}

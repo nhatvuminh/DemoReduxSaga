@@ -21,8 +21,9 @@ type MeasumentTabHeader = {
 };
 
 export default ({ y }: TabProps) => {
-  const { foods, measurements } = useFoods();
+  const { foods, measurements, scrollViewRef } = useFoods();
   const index = useSharedValue(0);
+
 
   const indexTab = useDerivedValue(() => {
     foods.forEach((__, i) => {
@@ -89,7 +90,10 @@ export default ({ y }: TabProps) => {
   };
 
   const setIndexTab = (i: number) => {
-    index.value = withTiming(i);
+    scrollViewRef?.current?.getNode().scrollTo({
+      y: measurements[i] + 1,
+      animated: true,
+    });
   };
 
   return (

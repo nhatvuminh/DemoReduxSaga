@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, TextInput, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, NavigatorScreenParams } from '@react-navigation/native';
 import Constants from './src/constants/Constants';
 import AnimatedScroll from './src/screen/animated_scroll/AnimatedScroll';
 import Home from './src/screen/home/Home';
@@ -9,6 +9,8 @@ import ListPost from './src/screen/drag_image/ListPost';
 import AnimatedScrollView from './src/screen/animated_scroll_view/AnimatedScrollView';
 import ActiveUserScroll from './src/screen/active_user_scroll/ActiveUserScroll';
 import UberEat from './src/screen/uber_eat/UberEat';
+import Navigator from './src/screen/drag_image';
+import { FacebookRoutes } from './src/screen/drag_image/Model';
 
 interface TextWithDefaultProps extends Text {
   defaultProps?: { allowFontScaling?: boolean };
@@ -25,7 +27,7 @@ interface TextWithDefaultProps extends Text {
 export type RootStackParamList = {
   Home: undefined;
   AnimatedScroll: undefined;
-  ListPost: undefined;
+  Navigator: NavigatorScreenParams<FacebookRoutes>;
   AnimatedScrollView: undefined;
   ActiveUserScroll: undefined;
   UberEat: undefined;
@@ -41,8 +43,8 @@ const App = () => {
           component={AnimatedScroll}
         />
         <RootStack.Screen
-          name={Constants.LIST_POST}
-          component={ListPost}
+          name={Constants.NAVIGATOR}
+          component={Navigator}
           options={{ headerShown: false }}
         />
         <RootStack.Screen

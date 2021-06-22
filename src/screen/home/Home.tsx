@@ -6,6 +6,11 @@ import ContentLoader from '../../loader/ContentLoader';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../../../App';
 import Footballers from '../../Item/Footballers';
+import { FacebookRoutes } from '../drag_image/Model';
+import {
+  SafeAreaProvider,
+  SafeAreaInsetsContext,
+} from 'react-native-safe-area-context';
 
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
 
@@ -56,19 +61,21 @@ export default function Home({ navigation }: HomeProps) {
   };
 
   const onMoveToDragImage = () => {
-    navigation.navigate('ListPost');
+    navigation.navigate('Navigator', {
+      screen: 'ListPost',
+    });
   };
 
   const onMoveToAnimatedScrollView = () => {
-    navigation.navigate('AnimatedScrollView');
+    navigationHandler('AnimatedScrollView');
   };
 
   const onMoveToActiveUserScroll = () => {
-    navigation.navigate('ActiveUserScroll');
+    navigationHandler('ActiveUserScroll');
   };
 
   const onMoveToUberEat = () => {
-    navigation.navigate('UberEat');
+    navigationHandler('UberEat');
   };
 
   return (

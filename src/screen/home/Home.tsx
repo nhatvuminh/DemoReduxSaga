@@ -78,6 +78,10 @@ export default function Home({ navigation }: HomeProps) {
     navigationHandler('UberEat');
   };
 
+  const onMoveToMomoHeader = () => {
+    navigationHandler('Main');
+  }
+
   return (
     <SafeAreaView
       style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -144,6 +148,19 @@ export default function Home({ navigation }: HomeProps) {
             backgroundColor: '#007bff',
           }}>
           <Text style={{ color: 'white' }}>Uber Eat</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={{ flexWrap: 'wrap', marginTop: 20 }}>
+        <TouchableOpacity
+          onPress={onMoveToMomoHeader}
+          style={{
+            borderWidth: 1,
+            borderColor: 'white',
+            borderRadius: 10,
+            padding: 10,
+            backgroundColor: '#007bff',
+          }}>
+          <Text style={{ color: 'white' }}>Momo Header</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>

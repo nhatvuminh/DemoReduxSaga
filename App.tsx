@@ -1,6 +1,9 @@
 import React from 'react';
 import { Text, TextInput, View } from 'react-native';
-import { NavigationContainer, NavigatorScreenParams } from '@react-navigation/native';
+import {
+  NavigationContainer,
+  NavigatorScreenParams,
+} from '@react-navigation/native';
 import Constants from './src/constants/Constants';
 import AnimatedScroll from './src/screen/animated_scroll/AnimatedScroll';
 import Home from './src/screen/home/Home';
@@ -11,6 +14,8 @@ import ActiveUserScroll from './src/screen/active_user_scroll/ActiveUserScroll';
 import UberEat from './src/screen/uber_eat/UberEat';
 import Navigator from './src/screen/drag_image';
 import { FacebookRoutes } from './src/screen/drag_image/Model';
+import MomoHeader from './src/screen/momo_header/MomoHeader';
+import Main from './src/screen/momo_header/Main';
 
 interface TextWithDefaultProps extends Text {
   defaultProps?: { allowFontScaling?: boolean };
@@ -31,6 +36,7 @@ export type RootStackParamList = {
   AnimatedScrollView: undefined;
   ActiveUserScroll: undefined;
   UberEat: undefined;
+  Main: undefined;
 };
 
 const App = () => {
@@ -58,6 +64,11 @@ const App = () => {
         <RootStack.Screen
           name={Constants.UBER_EAT}
           component={UberEat}
+          options={{ headerShown: false }}
+        />
+        <RootStack.Screen
+          name={Constants.MAIN}
+          component={Main}
           options={{ headerShown: false }}
         />
       </RootStack.Navigator>

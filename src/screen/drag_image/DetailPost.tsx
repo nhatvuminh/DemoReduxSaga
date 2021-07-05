@@ -61,7 +61,6 @@ const DetailPost = ({ navigation, route }: DetailProps) => {
     onEnd: (event, ctx) => {
       if (event.translationX !== ctx.startX && abs(event.translationY) > 150) {
         runOnJS(navigation.goBack)();
-        opacity.value = 0;
       } else {
         transX.value = withTiming(0, {
           duration: 400,

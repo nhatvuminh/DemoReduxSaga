@@ -20,17 +20,19 @@ const ListPost = ({}: ListPostProps) => {
   const { top: paddingTop } = useSafeAreaInsets();
 
   return (
-    <ScrollView style={{ paddingTop }}>
-      {posts.map((post, index) => {
-        return (
-          <PostItem
-            key={post.post_id}
-            post={post}
-            index={index}
-            isLastIndex={index === posts.length - 1}
-          />
-        );
-      })}
+    <ScrollView style={{ backgroundColor: 'white' }}>
+      <View style={{ paddingTop }}>
+        {posts.map((post, index) => {
+          return (
+            <PostItem
+              key={post.post_id}
+              post={post}
+              index={index}
+              isLastIndex={index === posts.length - 1}
+            />
+          );
+        })}
+      </View>
     </ScrollView>
   );
 };

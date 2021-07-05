@@ -2,10 +2,19 @@ import React, { ReactElement } from 'react';
 import { StyleSheet, TextInput } from 'react-native';
 import { Dimensions, View } from 'react-native';
 import Animated, {
+  useCode,
+  block,
   interpolate,
-  interpolateColor,
+  set,
+  useAnimatedStyle,
+  cond,
+  eq,
+  and,
+  greaterOrEq,
+  useValue,
+  lessOrEq,
+  useSharedValue,
 } from 'react-native-reanimated';
-import { useAnimatedStyle } from 'react-native-reanimated';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { HEADER_HEIGHT } from './MomoHeader';
@@ -33,20 +42,37 @@ export default ({ index, offsetY }: ItemProps) => {
     'QUÉT MÃ',
   ];
 
-  const opacityStyles = useAnimatedStyle(() => ({
-    opacity: interpolate(
-      offsetY.value,
-      [-10, 0, HEADER_HEIGHT, 200],
-      [1, 1, 0, 0],
-    ),
-  }));
-  const opacityStyles1 = useAnimatedStyle(() => ({
-    opacity: interpolate(
-      offsetY.value,
-      [-10, 0, HEADER_HEIGHT, 200],
-      [1, 1, 0, 0],
-    ),
-  }));
+  const opacity = useValue<number>(0);
+  const offset = useValue<number>(offsetY.value);
+
+  // const opacityStyles = useAnimatedStyle(() => ({
+  //   opacity: interpolate(
+  //     offsetY.value,
+  //     [-10, 0, HEADER_HEIGHT, 200],
+  //     [1, 1, 0, 0],
+  //   ),
+  // }));
+  // const opacityStyles1 = useAnimatedStyle(() => ({
+  //   opacity: interpolate(
+  //     offsetY.value,
+  //     [-10, 0, HEADER_HEIGHT, 200],
+  //     [1, 1, 0, 0],
+  //   ),
+  // }));
+  // const opacityStyles2 = useAnimatedStyle(() => ({
+  //   opacity: interpolate(
+  //     offsetY.value,
+  //     [-10, 0, HEADER_HEIGHT, 200],
+  //     [1, 1, 0, 0],
+  //   ),
+  // }));
+  useCode(() => cond(lessOrEq(offset, HEADER_HEIGHT), set(opacity, 1)), [
+    opacity,
+  ]);
+
+  useCode(() => cond(greaterOrEq(offset, HEADER_HEIGHT), set(opacity, 0)), [
+    opacity,
+  ]);
 
   const searchStyles = useAnimatedStyle(() => ({
     width: interpolate(
@@ -200,7 +226,7 @@ export default ({ index, offsetY }: ItemProps) => {
         />
         <View style={{ position: 'absolute', top: 15 / 2, bottom: 0, left: 5 }}>
           <FeatherIcon name={'search'} size={ICON_SIZE} color={'white'} />
-          <Animated.View style={[{ position: 'absolute' }, opacityStyles]}>
+          <Animated.View style={[{ position: 'absolute' }, { opacity }]}>
             <FeatherIcon name={'search'} size={ICON_SIZE} color={'black'} />
           </Animated.View>
         </View>
@@ -236,7 +262,7 @@ export default ({ index, offsetY }: ItemProps) => {
               backgroundColor: 'white',
               borderRadius: 5,
             },
-            opacityStyles1,
+            { opacity },
           ]}
         />
         <Icon />
@@ -245,7 +271,7 @@ export default ({ index, offsetY }: ItemProps) => {
             {
               ...StyleSheet.absoluteFillObject,
             },
-            opacityStyles,
+            { opacity },
           ]}>
           <Icon color />
         </Animated.View>

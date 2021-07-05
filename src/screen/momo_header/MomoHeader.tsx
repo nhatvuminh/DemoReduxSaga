@@ -1,51 +1,68 @@
 import React from 'react';
-import { Image, Text } from 'react-native';
-import { SafeAreaView, StyleSheet, View } from 'react-native';
 import Animated, {
-  useSharedValue,
-  useAnimatedScrollHandler,
-  interpolate,
+  useAnimatedStyle,
+  useDerivedValue,
 } from 'react-native-reanimated';
-import { useAnimatedStyle } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Item from './Item';
 
 type MomoHeaderProps = {
-  offsetY: Animated.SharedValue<number>;
+  offsetY: Animated.Value<number>;
 };
 
 export const HEADER_HEIGHT = 120;
 
 export default ({ offsetY }: MomoHeaderProps) => {
   const { top } = useSafeAreaInsets();
-  const translationY = useAnimatedStyle(() => ({
-    height: interpolate(
-      offsetY.value,
-      [-10, 0, HEADER_HEIGHT, 200],
-      [HEADER_HEIGHT, HEADER_HEIGHT, 60, 60],
-    ),
-  }));
+
+  // const height = useDerivedValue(() => {
+  //   return (
+  //     top +
+  //     (HEADER_HEIGHT - offsetY.value > 60
+  //       ? HEADER_HEIGHT - offsetY.value > 120
+  //         ? HEADER_HEIGHT
+  //         : HEADER_HEIGHT - offsetY.value < 0
+  //         ? 0
+  //         : HEADER_HEIGHT - offsetY.value
+  //       : 60)
+  //   );
+  // });
+
+  // const animateHeight = useAnimatedStyle(() => ({
+  //   height: height.value,
+  // }));
+
+  
 
   return (
     <Animated.View
       style={[
         {
-          // position: 'absolute',
-          // top,
-          // left: 0,
-          // right: 0,
-          backgroundColor: 'gray',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          backgroundColor: 'white',
           flexDirection: 'row',
-          paddingTop: 15,
           zIndex: 1,
         },
-        translationY,
+        animateHeight,
       ]}>
-      {Array(7)
-        .fill(7)
-        .map((__, index) => {
-          return <Item key={index} index={index} offsetY={offsetY} />;
-        })}
+      <Animated.View
+        style={[
+          {
+            flex: 1,
+            marginTop: top,
+            flexDirection: 'row',
+            backgroundColor: 'gray',
+          },
+        ]}>
+        {Array(7)
+          .fill(7)
+          .map((__, index) => {
+            return <Item key={index} index={index} offsetY={offsetY} />;
+          })}
+      </Animated.View>
     </Animated.View>
   );
 };

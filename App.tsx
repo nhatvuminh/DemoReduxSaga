@@ -1,21 +1,20 @@
-import React from 'react';
-import { Text, TextInput, View } from 'react-native';
 import {
   NavigationContainer,
-  NavigatorScreenParams,
+  NavigatorScreenParams
 } from '@react-navigation/native';
+import React from 'react';
+import { Text, TextInput } from 'react-native';
 import Constants from './src/constants/Constants';
-import AnimatedScroll from './src/screen/animated_scroll/AnimatedScroll';
-import Home from './src/screen/home/Home';
-import RootStack from './src/screen/stack/RootStack';
-import ListPost from './src/screen/drag_image/ListPost';
-import AnimatedScrollView from './src/screen/animated_scroll_view/AnimatedScrollView';
 import ActiveUserScroll from './src/screen/active_user_scroll/ActiveUserScroll';
-import UberEat from './src/screen/uber_eat/UberEat';
+import AnimatedScroll from './src/screen/animated_scroll/AnimatedScroll';
+import AnimatedScrollView from './src/screen/animated_scroll_view/AnimatedScrollView';
+import CircularProgress from './src/screen/circular_progress/CircularProgress';
 import Navigator from './src/screen/drag_image';
 import { FacebookRoutes } from './src/screen/drag_image/Model';
-import MomoHeader from './src/screen/momo_header/MomoHeader';
+import Home from './src/screen/home/Home';
 import Main from './src/screen/momo_header/Main';
+import RootStack from './src/screen/stack/RootStack';
+import UberEat from './src/screen/uber_eat/UberEat';
 
 interface TextWithDefaultProps extends Text {
   defaultProps?: { allowFontScaling?: boolean };
@@ -37,6 +36,7 @@ export type RootStackParamList = {
   ActiveUserScroll: undefined;
   UberEat: undefined;
   Main: undefined;
+  CircularProgress: undefined;
 };
 
 const App = () => {
@@ -69,6 +69,11 @@ const App = () => {
         <RootStack.Screen
           name={Constants.MAIN}
           component={Main}
+          options={{ headerShown: false }}
+        />
+         <RootStack.Screen
+          name={Constants.CIRCULAR_PROGRESS}
+          component={CircularProgress}
           options={{ headerShown: false }}
         />
       </RootStack.Navigator>

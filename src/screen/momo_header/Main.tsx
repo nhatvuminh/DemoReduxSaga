@@ -2,34 +2,31 @@ import React from 'react';
 import { Image, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import Animated, {
   useAnimatedScrollHandler,
-  useSharedValue,
+  useSharedValue
 } from 'react-native-reanimated';
-import { event } from 'react-native-reanimated';
-import { useValue } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import MomoHeader, { HEADER_HEIGHT } from './MomoHeader';
 
 export default () => {
   const { top, bottom } = useSafeAreaInsets();
 
-  // const scrollY = useSharedValue(0);
-  const scrollY = useValue<number>(0);
+  const scrollY = useSharedValue(0);
 
-  // const onScrollHandler = useAnimatedScrollHandler({
-  //   onScroll: e => {
-  //     scrollY.value = e.contentOffset.y;
-  //   },
-  // });
-
-  const onScrollHandler = event([
-    {
-      nativeEvent: {
-        contentOffset: {
-          y: scrollY,
-        },
-      },
+  const onScrollHandler = useAnimatedScrollHandler({
+    onScroll: e => {
+      scrollY.value = e.contentOffset.y;
     },
-  ]);
+  });
+
+  // const onScrollHandler = event([
+  //   {
+  //     nativeEvent: {
+  //       contentOffset: {
+  //         y: scrollY,
+  //       },
+  //     },
+  //   },
+  // ]);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>

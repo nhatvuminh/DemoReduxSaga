@@ -8,4 +8,5 @@ export default {
   SCROLL_ACTIVE_USER: 'ActiveUserScroll',
   UBER_EAT: 'UberEat',
   MAIN: 'Main',
+  CIRCULAR_PROGRESS: 'CircularProgress',
 };

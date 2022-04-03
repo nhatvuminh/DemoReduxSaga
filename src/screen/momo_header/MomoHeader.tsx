@@ -1,38 +1,16 @@
 import React from 'react';
-import Animated, {
-  useAnimatedStyle,
-  useDerivedValue,
-} from 'react-native-reanimated';
+import Animated from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Item from './Item';
 
 type MomoHeaderProps = {
-  offsetY: Animated.Value<number>;
+  offsetY: Animated.SharedValue<number>;
 };
 
 export const HEADER_HEIGHT = 120;
 
 export default ({ offsetY }: MomoHeaderProps) => {
   const { top } = useSafeAreaInsets();
-
-  // const height = useDerivedValue(() => {
-  //   return (
-  //     top +
-  //     (HEADER_HEIGHT - offsetY.value > 60
-  //       ? HEADER_HEIGHT - offsetY.value > 120
-  //         ? HEADER_HEIGHT
-  //         : HEADER_HEIGHT - offsetY.value < 0
-  //         ? 0
-  //         : HEADER_HEIGHT - offsetY.value
-  //       : 60)
-  //   );
-  // });
-
-  // const animateHeight = useAnimatedStyle(() => ({
-  //   height: height.value,
-  // }));
-
-  
 
   return (
     <Animated.View
@@ -46,7 +24,6 @@ export default ({ offsetY }: MomoHeaderProps) => {
           flexDirection: 'row',
           zIndex: 1,
         },
-        animateHeight,
       ]}>
       <Animated.View
         style={[

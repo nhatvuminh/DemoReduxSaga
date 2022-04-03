@@ -1,8 +1,7 @@
 import React from 'react';
-import Constants from '../../constants/Constants';
-import ListPost from './ListPost';
-import DetailPost from './DetailPost';
 import { createSharedElementStackNavigator } from 'react-navigation-shared-element';
+import DetailPost from './DetailPost';
+import ListPost from './ListPost';
 import { FacebookRoutes } from './Model';
 
 const Stack = createSharedElementStackNavigator<FacebookRoutes>();

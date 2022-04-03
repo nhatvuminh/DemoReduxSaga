@@ -1,16 +1,10 @@
-import React, { useEffect, useCallback, useMemo, useState } from 'react';
-import { SafeAreaView, TouchableOpacity, View, Text } from 'react-native';
-import { useDispatch, useSelector, DefaultRootState } from 'react-redux';
-import Constants from '../../constants/Constants';
-import ContentLoader from '../../loader/ContentLoader';
 import { StackNavigationProp } from '@react-navigation/stack';
+import React, { useCallback, useEffect } from 'react';
+import { SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootStackParamList } from '../../../App';
 import Footballers from '../../Item/Footballers';
-import { FacebookRoutes } from '../drag_image/Model';
-import {
-  SafeAreaProvider,
-  SafeAreaInsetsContext,
-} from 'react-native-safe-area-context';
+import ContentLoader from '../../loader/ContentLoader';
 
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
 
@@ -80,6 +74,10 @@ export default function Home({ navigation }: HomeProps) {
 
   const onMoveToMomoHeader = () => {
     navigationHandler('Main');
+  }
+
+  const onMoveToCircularProgress = () => {
+    navigationHandler('CircularProgress');
   }
 
   return (
@@ -161,6 +159,19 @@ export default function Home({ navigation }: HomeProps) {
             backgroundColor: '#007bff',
           }}>
           <Text style={{ color: 'white' }}>Momo Header</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={{ flexWrap: 'wrap', marginTop: 20 }}>
+        <TouchableOpacity
+          onPress={onMoveToCircularProgress}
+          style={{
+            borderWidth: 1,
+            borderColor: 'white',
+            borderRadius: 10,
+            padding: 10,
+            backgroundColor: '#007bff',
+          }}>
+          <Text style={{ color: 'white' }}>Circular Progress</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>

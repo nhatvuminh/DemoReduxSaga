@@ -4,7 +4,7 @@ import {
 } from '@react-navigation/native';
 import React from 'react';
 import { Text, TextInput } from 'react-native';
-import Constants from './src/constants/Constants';
+import Constants from '@contants';
 import ActiveUserScroll from './src/screen/active_user_scroll/ActiveUserScroll';
 import AnimatedScroll from './src/screen/animated_scroll/AnimatedScroll';
 import AnimatedScrollView from './src/screen/animated_scroll_view/AnimatedScrollView';

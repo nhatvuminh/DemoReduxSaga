@@ -2,9 +2,9 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useCallback, useEffect } from 'react';
 import { SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
+import ContentLoader from 'src/loader/ContentLoader';
 import { RootStackParamList } from '../../../App';
 import Footballers from '../../Item/Footballers';
-import ContentLoader from '../../loader/ContentLoader';
 
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
 

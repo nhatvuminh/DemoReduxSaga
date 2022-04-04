@@ -1,9 +1,9 @@
-import colors from "../../colors";
 import React, { memo, useEffect } from "react";
 import { Image, StyleSheet, View } from "react-native";
 import Animated, { Easing, useAnimatedProps, withSpring, withTiming, useSharedValue } from "react-native-reanimated";
 import Svg, { Circle, Defs, LinearGradient, Stop } from "react-native-svg";
-import globalStyles from "../../globalStyles";
+import colors from "@colors";
+import globalStyles from "@globalStyles";
 
 const IMAGE_SIZE = 70;
 const strokeWidth = 2;

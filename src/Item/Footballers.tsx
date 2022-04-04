@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View, Image } from 'react-native';
-import { Footballer } from '../saga/request/getFootballers';
+import { Footballer } from '@getFootballers';
 
 type FootballersProps = {
   footballers: Array<Footballer>;

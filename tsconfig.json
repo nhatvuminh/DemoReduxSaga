@@ -18,7 +18,7 @@
       "@colors": ["./src/colors/index"],
       "@contants": ["./src/constants/Constants"],
       "@getFootballers": ["./src/saga/request/getFootballers"],
-      // "@animated": ["./src/app/common/animated/index"],
+      "@momoHeader/accountManagerment": ["./src/screen/momo_header/AccountManagerment"],
       // "@config/*": ["./src/app/config/*"],
       // "@features/*": ["./src/app/features/*"],
       // "@components": ["./src/app/library/components/index"],

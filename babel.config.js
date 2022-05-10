@@ -14,6 +14,7 @@ module.exports = {
           "@colors": "./src/colors/index",
           "@contants": "./src/constants/Constants",
           "@getFootballers": "./src/saga/request/getFootballers",
+          "@momoHeader/accountManagerment": "./src/screen/momo_header/AccountManagerment",
         },
         "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }

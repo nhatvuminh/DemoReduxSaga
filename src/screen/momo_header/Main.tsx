@@ -1,103 +1,81 @@
+import AccountManagerment from '@momoHeader/accountManagerment';
 import React from 'react';
 import { Image, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import Animated, {
   useAnimatedScrollHandler,
-  useSharedValue
+  useSharedValue,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import MomoHeader, { HEADER_HEIGHT } from './MomoHeader';
+import { MAX_HEADER_HEIGHT } from './Item';
+import MomoHeader from './MomoHeader';
 
 export default () => {
   const { top, bottom } = useSafeAreaInsets();
 
-  const scrollY = useSharedValue(0);
+  const offsetY = useSharedValue(0);
 
   const onScrollHandler = useAnimatedScrollHandler({
     onScroll: e => {
-      scrollY.value = e.contentOffset.y;
+      offsetY.value = e.contentOffset.y;
     },
   });
 
-  // const onScrollHandler = event([
-  //   {
-  //     nativeEvent: {
-  //       contentOffset: {
-  //         y: scrollY,
-  //       },
-  //     },
-  //   },
-  // ]);
-
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <MomoHeader offsetY={scrollY} />
+      <MomoHeader offsetY={offsetY} />
       <Animated.ScrollView
-        scrollEventThrottle={1}
+        scrollEventThrottle={16}
         onScroll={onScrollHandler}
-        style={StyleSheet.absoluteFill}>
-        <View
-          style={{ paddingTop: top + HEADER_HEIGHT, paddingBottom: bottom }}>
-          <Text>AFGfdsjklfldsjklsnkl</Text>
-          <Text>mfjkhdsfhyuiyhcuiha</Text>
-          <Text>csachjnhnkadscv</Text>
-          <Image
-            source={{
-              uri:
-                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSR93QyYVOzg6_VInn8f9VsoaZ99XhOSeNFg&usqp=CAU',
-            }}
-            style={{ width: '100%', height: 200 }}
-          />
-          <Text>adeowiodsufiadsfdssg</Text>
-          <Text>qiowueqiu9ikoplkfdsc</Text>
-          <Text>fjhncjklasjfliwoqruow</Text>
-          <Text>adschjnkhnjksfdf</Text>
-          <Text>fancjhnhfjkehwruei</Text>
-          <Text>asdfjjkqifooasjcf</Text>
-          <Text>fdsjhjqurueiofhyoyyg9y8efdf</Text>
-          <Text>AAABBB</Text>
-          <Text>AAABBBCC</Text>
-          <Text>AAASSSS</Text>
-          <Image
-            source={{
-              uri:
-                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSR93QyYVOzg6_VInn8f9VsoaZ99XhOSeNFg&usqp=CAU',
-            }}
-            style={{ width: '100%', height: 200 }}
-          />
-          <Text>AFGfdsjklfldsjklsnkl</Text>
-          <Text>mfjkhdsfhyuiyhcuiha</Text>
-          <Text>csachjnhnkadscv</Text>
-          <Text>adeowiodsufiadsfdssg</Text>
-          <Text>qiowueqiu9ikoplkfdsc</Text>
-          <Text>fjhncjklasjfliwoqruow</Text>
-          <Text>adschjnkhnjksfdf</Text>
-          <Image
-            source={{
-              uri:
-                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSR93QyYVOzg6_VInn8f9VsoaZ99XhOSeNFg&usqp=CAU',
-            }}
-            style={{ width: '100%', height: 200 }}
-          />
-          <Text>fancjhnhfjkehwruei</Text>
-          <Text>asdfjjkqifooasjcf</Text>
-          <Text>fdsjhjqurueiofhyoyyg9y8efdf</Text>
-          <Text>AAABBB</Text>
-          <Text>AAABBBCC</Text>
-          <Text>AAASSSS</Text>
-          <Image
-            source={{
-              uri:
-                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSR93QyYVOzg6_VInn8f9VsoaZ99XhOSeNFg&usqp=CAU',
-            }}
-            style={{ width: '100%', height: 200 }}
-          />
-          <Text>fancjhnhfjkehwruei</Text>
-          <Text>asdfjjkqifooasjcf</Text>
-          <Text>fdsjhjqurueiofhyoyyg9y8efdf</Text>
-          <Text>AAABBB</Text>
-          <Text>AAABBBCC</Text>
-          <Text>AAASSSS</Text>
-        </View>
+        showsVerticalScrollIndicator={false}
+        stickyHeaderIndices={[0]}
+        style={StyleSheet.absoluteFill}
+        >
+        <AccountManagerment offsetY={offsetY} />
+        <Text>mfjkhdsfhyuiyhcuiha</Text>
+        <Text>csachjnhnkadscv</Text>
+        <Text>adeowiodsufiadsfdssg</Text>
+        <Text>qiowueqiu9ikoplkfdsc</Text>
+        <Text>fjhncjklasjfliwoqruow</Text>
+        <Text>adschjnkhnjksfdf</Text>
+        <Text>fancjhnhfjkehwruei</Text>
+        <Text>asdfjjkqifooasjcf</Text>
+        <Text>fdsjhjqurueiofhyoyyg9y8efdf</Text>
+        <Text>AAABBB</Text>
+        <Image
+          source={{
+            uri:
+              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSR93QyYVOzg6_VInn8f9VsoaZ99XhOSeNFg&usqp=CAU',
+          }}
+          style={{ width: '100%', height: 200 }}
+        />
+        <Text>AAABBBCC</Text>
+        <Text>AAASSSS</Text>
+        <Text>AFGfdsjklfldsjklsnkl</Text>
+        <Text>mfjkhdsfhyuiyhcuiha</Text>
+        <Text>csachjnhnkadscv</Text>
+        <Text>adeowiodsufiadsfdssg</Text>
+        <Text>qiowueqiu9ikoplkfdsc</Text>
+        <Text>fjhncjklasjfliwoqruow</Text>
+        <Text>adschjnkhnjksfdf</Text>
+        <Text>fancjhnhfjkehwruei</Text>
+        <Text>asdfjjkqifooasjcf</Text>
+        <Text>fdsjhjqurueiofhyoyyg9y8efdf</Text>
+        <Image
+          source={{
+            uri:
+              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSR93QyYVOzg6_VInn8f9VsoaZ99XhOSeNFg&usqp=CAU',
+          }}
+          style={{ width: '100%', height: 200 }}
+        />
+        <Text>AAABBB</Text>
+        <Text>AAABBBCC</Text>
+        <Text>AAASSSS</Text>
+        <Text>fancjhnhfjkehwruei</Text>
+        <Text>asdfjjkqifooasjcf</Text>
+        <Text>fdsjhjqurueiofhyoyyg9y8efdf</Text>
+        <Text>AAABBB</Text>
+        <Text>AAABBBCC</Text>
+        <Text>AAASSSS</Text>
       </Animated.ScrollView>
     </SafeAreaView>
   );

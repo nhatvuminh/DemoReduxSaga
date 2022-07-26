@@ -80,6 +80,10 @@ export default function Home({ navigation }: HomeProps) {
     navigationHandler('CircularProgress');
   }
 
+  const onMoveToCustomViewScreen = () => {
+    navigationHandler('CustomViewScreen');
+  };
+
   return (
     <SafeAreaView
       style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -172,6 +176,19 @@ export default function Home({ navigation }: HomeProps) {
             backgroundColor: '#007bff',
           }}>
           <Text style={{ color: 'white' }}>Circular Progress</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={{ flexWrap: 'wrap', marginTop: 20 }}>
+        <TouchableOpacity
+          onPress={onMoveToCustomViewScreen}
+          style={{
+            borderWidth: 1,
+            borderColor: 'white',
+            borderRadius: 10,
+            padding: 10,
+            backgroundColor: '#007bff',
+          }}>
+          <Text style={{ color: 'white' }}>CustomView Screen</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>

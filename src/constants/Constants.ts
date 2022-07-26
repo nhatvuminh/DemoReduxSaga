@@ -9,4 +9,5 @@ export default {
   UBER_EAT: 'UberEat',
   MAIN: 'Main',
   CIRCULAR_PROGRESS: 'CircularProgress',
+  CUSTOM_VIEW_SCREEN: 'CustomViewScreen',
 };

@@ -19,7 +19,7 @@
       "@contants": ["./src/constants/Constants"],
       "@getFootballers": ["./src/saga/request/getFootballers"],
       "@momoHeader/accountManagerment": ["./src/screen/momo_header/AccountManagerment"],
-      // "@config/*": ["./src/app/config/*"],
+      "@screen/custom_view_native_ui": ["./src/screen/custom_view_native_ui/index"],
       // "@features/*": ["./src/app/features/*"],
       // "@components": ["./src/app/library/components/index"],
       // "@utils": ["./src/app/library/utils/index"],

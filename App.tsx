@@ -1,6 +1,6 @@
 import {
   NavigationContainer,
-  NavigatorScreenParams
+  NavigatorScreenParams,
 } from '@react-navigation/native';
 import React from 'react';
 import { Text, TextInput } from 'react-native';
@@ -15,6 +15,7 @@ import Home from './src/screen/home/Home';
 import Main from './src/screen/momo_header/Main';
 import RootStack from './src/screen/stack/RootStack';
 import UberEat from './src/screen/uber_eat/UberEat';
+import { CustomViewScreen } from '@screen/custom_view_native_ui';
 
 interface TextWithDefaultProps extends Text {
   defaultProps?: { allowFontScaling?: boolean };
@@ -37,6 +38,7 @@ export type RootStackParamList = {
   UberEat: undefined;
   Main: undefined;
   CircularProgress: undefined;
+  CustomViewScreen: undefined;
 };
 
 const App = () => {
@@ -71,9 +73,14 @@ const App = () => {
           component={Main}
           options={{ headerShown: false }}
         />
-         <RootStack.Screen
+        <RootStack.Screen
           name={Constants.CIRCULAR_PROGRESS}
           component={CircularProgress}
+          options={{ headerShown: false }}
+        />
+        <RootStack.Screen
+          name={Constants.CUSTOM_VIEW_SCREEN}
+          component={CustomViewScreen}
           options={{ headerShown: false }}
         />
       </RootStack.Navigator>

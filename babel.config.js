@@ -15,6 +15,7 @@ module.exports = {
           "@contants": "./src/constants/Constants",
           "@getFootballers": "./src/saga/request/getFootballers",
           "@momoHeader/accountManagerment": "./src/screen/momo_header/AccountManagerment",
+          "@screen/custom_view_native_ui": "./src/screen/custom_view_native_ui/index",
         },
         "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }

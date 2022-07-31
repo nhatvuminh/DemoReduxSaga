@@ -1,6 +1,6 @@
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useCallback, useEffect } from 'react';
-import { SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
+import { NativeModules, SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import ContentLoader from 'src/loader/ContentLoader';
 import { RootStackParamList } from '../../../App';
@@ -82,6 +82,12 @@ export default function Home({ navigation }: HomeProps) {
 
   const onMoveToCustomViewScreen = () => {
     navigationHandler('CustomViewScreen');
+  };
+  
+  const onBridgeCall = async () => {
+    const {ModuleBridge} = NativeModules;
+    const x = await ModuleBridge.callFromJS({x: 1, y: 2});
+    console.log("aaaaa ===== ", x);
   };
 
   return (
@@ -189,6 +195,19 @@ export default function Home({ navigation }: HomeProps) {
             backgroundColor: '#007bff',
           }}>
           <Text style={{ color: 'white' }}>CustomView Screen</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={{ flexWrap: 'wrap', marginTop: 20 }}>
+        <TouchableOpacity
+          onPress={onBridgeCall}
+          style={{
+            borderWidth: 1,
+            borderColor: 'white',
+            borderRadius: 10,
+            padding: 10,
+            backgroundColor: '#007bff',
+          }}>
+          <Text style={{ color: 'white' }}>Bridge call</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>

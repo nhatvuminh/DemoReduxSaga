@@ -19,4 +19,12 @@
         android:layout_height="wrap_content"
         android:text="@string/author" />
 
+    <Button
+        android:id="@+id/btnTest"
+        android:layout_marginTop="@android:dimen/app_icon_size"
+        android:text="@string/buttonTest"
+        android:padding="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
 </com.reduxsagaexample.RCTCustomView.RCTCustomView>

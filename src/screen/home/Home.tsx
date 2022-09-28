@@ -1,6 +1,14 @@
+import globalStyles from '@globalStyles';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useCallback, useEffect } from 'react';
-import { NativeModules, SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
+import {
+  NativeModules,
+  SafeAreaView,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import ContentLoader from 'src/loader/ContentLoader';
 import { RootStackParamList } from '../../../App';
@@ -13,6 +21,46 @@ type HomeProps = {
 };
 
 // const resource = fetchProfileData();
+
+interface Item {
+  title: string;
+  screen: keyof RootStackParamList;
+}
+
+const LIST_SCREEN: Item[] = [
+  {
+    title: 'Animated Scroll',
+    screen: 'AnimatedScroll',
+  },
+  {
+    title: 'Drag Image',
+    screen: 'Navigator',
+  },
+  {
+    title: 'AnimatedScrollView',
+    screen: 'AnimatedScrollView',
+  },
+  {
+    title: 'ActiveUserScroll',
+    screen: 'ActiveUserScroll',
+  },
+  {
+    title: 'Uber Eat',
+    screen: 'UberEat',
+  },
+  {
+    title: 'Momo Header',
+    screen: 'MomoHeader',
+  },
+  {
+    title: 'Cicular Progress',
+    screen: 'CircularProgress',
+  },
+  {
+    title: 'CustomView Screen',
+    screen: 'CustomViewScreen',
+  },
+];
 
 export default function Home({ navigation }: HomeProps) {
   const data = useSelector((state: any) => state.footballers);
@@ -50,166 +98,37 @@ export default function Home({ navigation }: HomeProps) {
     [navigation],
   );
 
-  const onMoveToAnimatedScroll = () => {
-    navigationHandler('AnimatedScroll');
+  const onNavigateScreen = (screen: keyof RootStackParamList) => {
+    navigationHandler(screen);
   };
 
-  const onMoveToDragImage = () => {
-    navigation.navigate('Navigator', {
-      screen: 'ListPost',
-    });
-  };
-
-  const onMoveToAnimatedScrollView = () => {
-    navigationHandler('AnimatedScrollView');
-  };
-
-  const onMoveToActiveUserScroll = () => {
-    navigationHandler('ActiveUserScroll');
-  };
-
-  const onMoveToUberEat = () => {
-    navigationHandler('UberEat');
-  };
-
-  const onMoveToMomoHeader = () => {
-    navigationHandler('Main');
-  }
-
-  const onMoveToCircularProgress = () => {
-    navigationHandler('CircularProgress');
-  }
-
-  const onMoveToCustomViewScreen = () => {
-    navigationHandler('CustomViewScreen');
-  };
-  
   const onBridgeCall = async () => {
-    const {ModuleBridge} = NativeModules;
-    const x = await ModuleBridge.callFromJS({x: 1, y: 2});
-    console.log("aaaaa ===== ", x);
+    const { ModuleBridge } = NativeModules;
+    const x = await ModuleBridge.callFromJS({ x: 1, y: 2 });
   };
 
   return (
     <SafeAreaView
       style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <View style={{ flexWrap: 'wrap' }}>
-        <TouchableOpacity
-          onPress={onMoveToAnimatedScroll}
-          style={{
-            borderWidth: 1,
-            borderColor: 'white',
-            borderRadius: 10,
-            padding: 10,
-            backgroundColor: '#007bff',
-          }}>
-          <Text style={{ color: 'white' }}>Animated Scroll</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={{ flexWrap: 'wrap', marginTop: 20 }}>
-        <TouchableOpacity
-          onPress={onMoveToDragImage}
-          style={{
-            borderWidth: 1,
-            borderColor: 'white',
-            borderRadius: 10,
-            padding: 10,
-            backgroundColor: '#007bff',
-          }}>
-          <Text style={{ color: 'white' }}>Drag Image</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={{ flexWrap: 'wrap', marginTop: 20 }}>
-        <TouchableOpacity
-          onPress={onMoveToAnimatedScrollView}
-          style={{
-            borderWidth: 1,
-            borderColor: 'white',
-            borderRadius: 10,
-            padding: 10,
-            backgroundColor: '#007bff',
-          }}>
-          <Text style={{ color: 'white' }}>AnimatedScrollView</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={{ flexWrap: 'wrap', marginTop: 20 }}>
-        <TouchableOpacity
-          onPress={onMoveToActiveUserScroll}
-          style={{
-            borderWidth: 1,
-            borderColor: 'white',
-            borderRadius: 10,
-            padding: 10,
-            backgroundColor: '#007bff',
-          }}>
-          <Text style={{ color: 'white' }}>ActiveUserScroll</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={{ flexWrap: 'wrap', marginTop: 20 }}>
-        <TouchableOpacity
-          onPress={onMoveToUberEat}
-          style={{
-            borderWidth: 1,
-            borderColor: 'white',
-            borderRadius: 10,
-            padding: 10,
-            backgroundColor: '#007bff',
-          }}>
-          <Text style={{ color: 'white' }}>Uber Eat</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={{ flexWrap: 'wrap', marginTop: 20 }}>
-        <TouchableOpacity
-          onPress={onMoveToMomoHeader}
-          style={{
-            borderWidth: 1,
-            borderColor: 'white',
-            borderRadius: 10,
-            padding: 10,
-            backgroundColor: '#007bff',
-          }}>
-          <Text style={{ color: 'white' }}>Momo Header</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={{ flexWrap: 'wrap', marginTop: 20 }}>
-        <TouchableOpacity
-          onPress={onMoveToCircularProgress}
-          style={{
-            borderWidth: 1,
-            borderColor: 'white',
-            borderRadius: 10,
-            padding: 10,
-            backgroundColor: '#007bff',
-          }}>
-          <Text style={{ color: 'white' }}>Circular Progress</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={{ flexWrap: 'wrap', marginTop: 20 }}>
-        <TouchableOpacity
-          onPress={onMoveToCustomViewScreen}
-          style={{
-            borderWidth: 1,
-            borderColor: 'white',
-            borderRadius: 10,
-            padding: 10,
-            backgroundColor: '#007bff',
-          }}>
-          <Text style={{ color: 'white' }}>CustomView Screen</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={{ flexWrap: 'wrap', marginTop: 20 }}>
-        <TouchableOpacity
-          onPress={onBridgeCall}
-          style={{
-            borderWidth: 1,
-            borderColor: 'white',
-            borderRadius: 10,
-            padding: 10,
-            backgroundColor: '#007bff',
-          }}>
-          <Text style={{ color: 'white' }}>Bridge call</Text>
-        </TouchableOpacity>
-      </View>
+      <ScrollView contentContainerStyle={[globalStyles.flexGrow, globalStyles.fullFillCenter]}>
+        {LIST_SCREEN.map((item, index) => {
+          return (
+            <View key={index} style={{ flexWrap: 'wrap', marginTop: 20 }}>
+              <TouchableOpacity
+                onPress={() => onNavigateScreen(item.screen)}
+                style={{
+                  borderWidth: 1,
+                  borderColor: 'white',
+                  borderRadius: 10,
+                  padding: 10,
+                  backgroundColor: '#007bff',
+                }}>
+                <Text style={{ color: 'white' }}>{item.title}</Text>
+              </TouchableOpacity>
+            </View>
+          );
+        })}
+      </ScrollView>
     </SafeAreaView>
   );
 }

@@ -2,4 +2,5 @@
     <string name="app_name">ReduxSagaExample</string>
     <string name="author">Author: Vu Minh Nhat</string>
     <string name="image">Image</string>
+    <string name="buttonTest">Test click</string>
 </resources>

@@ -39,6 +39,7 @@ export type RootStackParamList = {
   Main: undefined;
   CircularProgress: undefined;
   CustomViewScreen: undefined;
+  MomoHeader: undefined;
 };
 
 const App = () => {
@@ -69,7 +70,7 @@ const App = () => {
           options={{ headerShown: false }}
         />
         <RootStack.Screen
-          name={Constants.MAIN}
+          name={Constants.MOMO_HEADER}
           component={Main}
           options={{ headerShown: false }}
         />

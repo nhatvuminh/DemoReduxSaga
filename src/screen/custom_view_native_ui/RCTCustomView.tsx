@@ -4,6 +4,10 @@ import {
   ViewProps,
 } from 'react-native';
 
+
+export interface NativeEvent<E = {message: string}> {
+  nativeEvent: E;
+}
 interface CustomViewProps extends ViewProps {
   /**
    * The image source (either a remote URL or a local file resource).
@@ -19,6 +23,7 @@ interface CustomViewProps extends ViewProps {
    * The title of text below image
    */
   title: string;
+  onClickTestButton: (event: NativeEvent) => void;
 }
 
 /**

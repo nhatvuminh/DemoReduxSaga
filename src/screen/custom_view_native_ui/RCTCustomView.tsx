@@ -4,8 +4,7 @@ import {
   ViewProps,
 } from 'react-native';
 
-
-export interface NativeEvent<E = {message: string}> {
+export interface NativeEvent<E = { message: string }> {
   nativeEvent: E;
 }
 interface CustomViewProps extends ViewProps {

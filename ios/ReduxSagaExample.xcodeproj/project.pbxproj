@@ -13,6 +13,9 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		6628EFB75DD426C0137DCA4F /* libPods-ReduxSagaExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B57B42067BBDE3A5105F1C8C /* libPods-ReduxSagaExample.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		CB84528D28E6997F004C6A29 /* CustomView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB84528C28E6997F004C6A29 /* CustomView.storyboard */; };
+		CB84529128E6A3CC004C6A29 /* CustomViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CB84529028E6A3CC004C6A29 /* CustomViewManager.m */; };
+		CBC666882896C31B002082FB /* ModuleBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = CBC666872896C31B002082FB /* ModuleBridge.m */; };
 		EFFDE2E8A5E6291AA62AFE20 /* libPods-ReduxSagaExample-ReduxSagaExampleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AD211BE919687EF0836CB79 /* libPods-ReduxSagaExample-ReduxSagaExampleTests.a */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +46,11 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = ReduxSagaExample/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9BCA6CC6F3B23CC0F743FB49 /* Pods-ReduxSagaExample-ReduxSagaExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReduxSagaExample-ReduxSagaExampleTests.release.xcconfig"; path = "Target Support Files/Pods-ReduxSagaExample-ReduxSagaExampleTests/Pods-ReduxSagaExample-ReduxSagaExampleTests.release.xcconfig"; sourceTree = "<group>"; };
 		B57B42067BBDE3A5105F1C8C /* libPods-ReduxSagaExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ReduxSagaExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB84528C28E6997F004C6A29 /* CustomView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CustomView.storyboard; sourceTree = "<group>"; };
+		CB84529028E6A3CC004C6A29 /* CustomViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomViewManager.m; sourceTree = "<group>"; };
+		CB84529228E6A3F2004C6A29 /* CustomViewManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomViewManager.h; sourceTree = "<group>"; };
+		CBC666872896C31B002082FB /* ModuleBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModuleBridge.m; sourceTree = "<group>"; };
+		CBC666892896C353002082FB /* ModuleBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModuleBridge.h; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		FCF14854265752F500272371 /* Fontisto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fontisto.ttf; sourceTree = "<group>"; };
 		FCF14855265752F500272371 /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Octicons.ttf; sourceTree = "<group>"; };
@@ -102,12 +110,15 @@
 		13B07FAE1A68108700A75B9A /* ReduxSagaExample */ = {
 			isa = PBXGroup;
 			children = (
+				CB84528F28E6A38F004C6A29 /* CustomView */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				CBC666872896C31B002082FB /* ModuleBridge.m */,
+				CBC666892896C353002082FB /* ModuleBridge.h */,
 			);
 			name = ReduxSagaExample;
 			sourceTree = "<group>";
@@ -160,6 +171,16 @@
 				00E356EE1AD99517003FC87E /* ReduxSagaExampleTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		CB84528F28E6A38F004C6A29 /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				CB84528C28E6997F004C6A29 /* CustomView.storyboard */,
+				CB84529028E6A3CC004C6A29 /* CustomViewManager.m */,
+				CB84529228E6A3F2004C6A29 /* CustomViewManager.h */,
+			);
+			path = CustomView;
 			sourceTree = "<group>";
 		};
 		D0C8A3431F35531306F42773 /* Pods */ = {
@@ -291,6 +312,7 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
+				CB84528D28E6997F004C6A29 /* CustomView.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,8 +445,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBC666882896C31B002082FB /* ModuleBridge.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				CB84529128E6A3CC004C6A29 /* CustomViewManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -499,7 +523,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = HR8KMXWN6N;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = ReduxSagaExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -527,7 +551,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = T2F46JJNJ6;
+				DEVELOPMENT_TEAM = HR8KMXWN6N;
 				INFOPLIST_FILE = ReduxSagaExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

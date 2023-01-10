@@ -1,2 +1,2 @@
 # DemoReduxSaga
-A small demo with redux-saga, react-native-reanimated v2
+A demo with redux-saga, react-native-reanimated v2, native ui component
